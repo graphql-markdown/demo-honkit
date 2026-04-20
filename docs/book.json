@@ -1,0 +1,11 @@
+{
+  "plugins": [
+    "toggle-chapters"
+  ],
+  "styles": {
+    "website": "styles/website.css"
+  },
+  "pluginsConfig": {
+    "toggle-chapters": {}
+  }
+}

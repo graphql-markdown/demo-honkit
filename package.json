@@ -1,0 +1,32 @@
+{
+  "name": "graphql-markdown-honkit-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Standalone GraphQL-Markdown demo for HonKit",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "generate": "npm run generate:all",
+    "generate:local": "gqlmd graphql-to-doc:local",
+    "generate:remote": "gqlmd graphql-to-doc:remote",
+    "generate:all": "npm run generate:local && npm run generate:remote",
+    "summary": "node ./scripts/build-summary.mjs",
+    "prepare": "npm run generate && npm run summary",
+    "dev": "npm run prepare && honkit serve docs",
+    "build": "npm run prepare && honkit build docs docs/_book",
+    "clean": "rm -rf docs/graphql docs/graphql-remote docs/SUMMARY.md _book docs/_book"
+  },
+  "dependencies": {
+    "@graphql-markdown/cli": "0.7.1",
+    "@graphql-tools/graphql-file-loader": "^8.1.2",
+    "@graphql-tools/url-loader": "^9.0.5",
+    "graphql": "^16.11.0"
+  },
+  "devDependencies": {
+    "honkit": "^6.0.0",
+    "honkit-plugin-toggle-chapters": "^0.0.1"
+  }
+}

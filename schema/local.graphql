@@ -1,0 +1,51 @@
+"""Standalone demo schema for GitBook-generated docs."""
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  """Get one user by ID."""
+  user(id: ID!): User
+
+  """List repositories with optional paging."""
+  repositories(first: Int = 10): [Repository!]!
+}
+
+type Mutation {
+  """Create a new issue in a repository."""
+  createIssue(input: CreateIssueInput!): Issue!
+}
+
+type User {
+  id: ID!
+  login: String!
+  displayName: String
+  repositories: [Repository!]!
+}
+
+type Repository {
+  id: ID!
+  name: String!
+  owner: User!
+  issues: [Issue!]!
+}
+
+type Issue {
+  id: ID!
+  title: String!
+  description: String
+  status: IssueStatus!
+  repository: Repository!
+}
+
+enum IssueStatus {
+  OPEN
+  CLOSED
+}
+
+input CreateIssueInput {
+  repositoryId: ID!
+  title: String!
+  description: String
+}
