@@ -1,5 +1,9 @@
 # GraphQL-Markdown + HonKit demo
 
+This project demonstrates how to generate GraphQL documentation with GraphQL-Markdown for a [HonKit](https://honkit.netlify.app/) site.
+
+**Live demo:** [graphql-markdown.dev/demo-honkit](https://graphql-markdown.dev/demo-honkit/)
+
 ## 🚀 Project Structure
 
 Inside your GraphQL-Markdown + [HonKit](https://honkit.netlify.app/) project, you'll see the following folders and files:
