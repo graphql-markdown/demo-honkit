@@ -1,9 +1,8 @@
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const mdxParserPath = path.join(__dirname, "honkit-mdx.cjs");
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const formatter = pathToFileURL(resolve(__dirname, "scripts/honkit-mdx.mjs")).href;
 
 const remoteEndpoint =
   process.env.GRAPHQL_ENDPOINT ?? "https://countries.trevorblades.com/graphql";
@@ -25,7 +24,7 @@ const config = {
           baseURL: "graphql",
           linkRoot: "/",
           homepage: false,
-          mdxParser: mdxParserPath,
+          formatter,
           loaders: {
             GraphQLFileLoader: "@graphql-tools/graphql-file-loader",
           },
@@ -49,7 +48,7 @@ const config = {
           baseURL: "graphql-remote",
           linkRoot: "/",
           homepage: false,
-          mdxParser: mdxParserPath,
+          formatter,
           loaders: {
             UrlLoader: {
               module: "@graphql-tools/url-loader",

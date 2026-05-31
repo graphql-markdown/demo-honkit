@@ -20,7 +20,8 @@
     "clean": "rm -rf docs/graphql docs/graphql-remote docs/SUMMARY.md _book docs/_book"
   },
   "dependencies": {
-    "@graphql-markdown/cli": "0.7.1",
+    "@graphql-markdown/cli": "^1.0.0",
+    "@graphql-markdown/formatters": "^1.0.0",
     "@graphql-tools/graphql-file-loader": "^8.1.2",
     "@graphql-tools/url-loader": "^9.0.5",
     "graphql": "^16.11.0"
