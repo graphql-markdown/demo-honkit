@@ -86,7 +86,7 @@ const collectTocEntries = (section, entries) => {
     const re = /^###\s+(.+)$/mg;
     let m;
     while ((m = re.exec(section)) !== null) {
-      const raw = m[1].replace(/<[^>]+>/g, "").trim();
+      const raw = m[1].trim();
       if (raw) entries.push({ text: raw, anchor: raw.toLowerCase().replace(/[^\w\s-]/g, "").replace(/\s+/g, "-") });
     }
     return;
@@ -94,7 +94,7 @@ const collectTocEntries = (section, entries) => {
   if (Array.isArray(section)) { for (const item of section) collectTocEntries(item, entries); return; }
   if (typeof section === "object") {
     if (typeof section.title === "string" && section.title.trim()) {
-      const raw = section.title.replace(/<[^>]+>/g, "").trim();
+      const raw = section.title.trim();
       if (raw) entries.push({ text: raw, anchor: raw.toLowerCase().replace(/[^\w\s-]/g, "").replace(/\s+/g, "-") });
     }
     if (section.content !== undefined) collectTocEntries(section.content, entries);
