@@ -27,8 +27,9 @@ const getEntityKind = (type, schema) => {
   if (!type) return null;
   const ctor = type.constructor?.name;
 
-  if (typeof type.astNode !== "undefined") {
-    const kind = type.astNode?.kind;
+  // astNode is null for introspection-built schemas — use != null, not !== undefined
+  if (type.astNode != null) {
+    const kind = type.astNode.kind;
     if (kind === "ObjectTypeDefinition" || ctor === "GraphQLObjectType") {
       if (schema) {
         if (schema.getQueryType?.()?.name === type.name) return "query";
@@ -45,7 +46,15 @@ const getEntityKind = (type, schema) => {
     if (kind === "DirectiveDefinition"       || ctor === "GraphQLDirective")        return "directive";
   }
 
-  if (ctor === "GraphQLObjectType")      return "object";
+  // Fallback for introspection schemas (no astNode) — check root types before returning "object"
+  if (ctor === "GraphQLObjectType") {
+    if (schema) {
+      if (schema.getQueryType?.()?.name === type.name) return "query";
+      if (schema.getMutationType?.()?.name === type.name) return "mutation";
+      if (schema.getSubscriptionType?.()?.name === type.name) return "subscription";
+    }
+    return "object";
+  }
   if (ctor === "GraphQLInputObjectType") return "input";
   if (ctor === "GraphQLEnumType")        return "enum";
   if (ctor === "GraphQLScalarType")      return "scalar";
@@ -69,6 +78,8 @@ const getEntityKind = (type, schema) => {
 // ---------------------------------------------------------------------------
 // On-this-page TOC
 // ---------------------------------------------------------------------------
+const escHtml = (s) =>
+  s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const collectTocEntries = (section, entries) => {
   if (!section) return;
   if (typeof section === "string") {
@@ -94,7 +105,7 @@ const buildPageToc = (sections, outputKeys) => {
   const items = [];
   for (const key of outputKeys) collectTocEntries(sections[key], items);
   if (items.length < 2) return null;
-  const links = items.map(({ text, anchor }) => `<li><a href="#${anchor}">${text}</a></li>`).join("");
+  const links = items.map(({ text, anchor }) => `<li><a href="#${escHtml(anchor)}">${escHtml(text)}</a></li>`).join("");
   return [
     `<aside class="on-this-page" aria-label="On this page">`,
     `  <div class="on-this-page__title">On this page</div>`,

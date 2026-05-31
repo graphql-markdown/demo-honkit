@@ -1,7 +1,8 @@
-import { resolve } from "node:path";
-import { pathToFileURL } from "node:url";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
-const formatter = pathToFileURL(resolve("./scripts/honkit-mdx.mjs")).href;
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const formatter = pathToFileURL(resolve(__dirname, "scripts/honkit-mdx.mjs")).href;
 
 const remoteEndpoint =
   process.env.GRAPHQL_ENDPOINT ?? "https://countries.trevorblades.com/graphql";
