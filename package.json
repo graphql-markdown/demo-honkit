@@ -20,11 +20,12 @@
     "clean": "rm -rf docs/graphql docs/graphql-remote docs/SUMMARY.md _book docs/_book"
   },
   "dependencies": {
-    "@graphql-markdown/cli": "^1.0.1",
-    "@graphql-markdown/formatters": "^1.0.1",
-    "@graphql-tools/graphql-file-loader": "^8.1.2",
-    "@graphql-tools/url-loader": "^9.0.5",
-    "graphql": "^16.11.0"
+    "@graphql-markdown/cli": "^1.1.0",
+    "@graphql-markdown/formatters": "^1.1.1",
+    "@graphql-markdown/utils": "^1.13.1",
+    "@graphql-tools/graphql-file-loader": "^8.1.20",
+    "@graphql-tools/url-loader": "^9.1.10",
+    "graphql": "^16.14.2"
   },
   "devDependencies": {
     "honkit": "^6.2.2",
