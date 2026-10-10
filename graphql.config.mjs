@@ -22,7 +22,7 @@ const config = {
         "graphql-markdown": {
           rootPath: "./docs",
           baseURL: "graphql",
-          linkRoot: "/",
+          linkRoot: "/demo-honkit",
           homepage: false,
           formatter,
           loaders: {
@@ -46,7 +46,7 @@ const config = {
         "graphql-markdown": {
           rootPath: "./docs",
           baseURL: "graphql-remote",
-          linkRoot: "/",
+          linkRoot: "/demo-honkit",
           homepage: false,
           formatter,
           loaders: {
