@@ -23,8 +23,8 @@
     "@graphql-markdown/cli": "^1.2.0",
     "@graphql-markdown/formatters": "^1.2.0",
     "@graphql-markdown/utils": "^1.14.0",
-    "@graphql-tools/graphql-file-loader": "^8.1.20",
-    "@graphql-tools/url-loader": "^9.1.10",
+    "@graphql-tools/graphql-file-loader": "^8.1.22",
+    "@graphql-tools/url-loader": "^9.1.12",
     "graphql": "^16.14.2"
   },
   "devDependencies": {
