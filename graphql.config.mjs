@@ -24,6 +24,7 @@ const config = {
           baseURL: "graphql",
           linkRoot: "/demo-honkit",
           homepage: false,
+          telemetry: false,
           formatter,
           loaders: {
             GraphQLFileLoader: "@graphql-tools/graphql-file-loader",
@@ -48,6 +49,7 @@ const config = {
           baseURL: "graphql-remote",
           linkRoot: "/demo-honkit",
           homepage: false,
+          telemetry: false,
           formatter,
           loaders: {
             UrlLoader: {
