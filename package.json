@@ -28,7 +28,7 @@
     "graphql": "^17.0.2"
   },
   "devDependencies": {
-    "honkit": "^6.2.2",
+    "honkit": "^6.2.5",
     "honkit-plugin-toggle-chapters": "^0.0.1"
   }
 }
