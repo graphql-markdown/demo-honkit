@@ -23,9 +23,9 @@
     "@graphql-markdown/cli": "^1.2.1",
     "@graphql-markdown/formatters": "^1.2.0",
     "@graphql-markdown/utils": "^1.14.0",
-    "@graphql-tools/graphql-file-loader": "^9.1.0",
-    "@graphql-tools/url-loader": "^10.0.7",
-    "graphql": "^17.0.2"
+    "@graphql-tools/graphql-file-loader": "^9.1.1",
+    "@graphql-tools/url-loader": "^10.0.8",
+    "graphql": "^17.1.0"
   },
   "devDependencies": {
     "honkit": "^6.2.5",
