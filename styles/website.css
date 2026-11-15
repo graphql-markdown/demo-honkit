@@ -108,3 +108,11 @@
   color: #16345b;
   text-decoration: none;
 }
+
+.gqlmd-footer {
+  margin-top: 3em;
+  padding-top: 1em;
+  border-top: 1px solid #e8e8e8;
+  font-size: 0.9em;
+  color: #858585;
+}
