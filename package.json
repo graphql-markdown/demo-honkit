@@ -9,21 +9,17 @@
     "node": ">=20"
   },
   "scripts": {
-    "generate": "npm run generate:all",
-    "generate:local": "gqlmd graphql-to-doc:local",
-    "generate:remote": "gqlmd graphql-to-doc:remote",
-    "generate:all": "npm run generate:local && npm run generate:remote",
+    "generate": "gqlmd graphql-to-doc",
     "summary": "node ./scripts/build-summary.mjs",
     "prepare": "npm run generate && npm run summary",
     "dev": "npm run prepare && honkit serve docs",
     "build": "npm run prepare && honkit build docs docs/_book",
-    "clean": "rm -rf docs/graphql docs/graphql-remote docs/SUMMARY.md _book docs/_book"
+    "clean": "rm -rf docs/graphql docs/SUMMARY.md docs/_nav _book docs/_book"
   },
   "dependencies": {
     "@graphql-markdown/cli": "^1.2.2",
     "@graphql-markdown/formatters": "^1.2.2",
     "@graphql-markdown/utils": "^1.14.2",
-    "@graphql-tools/graphql-file-loader": "^9.1.2",
     "@graphql-tools/url-loader": "^10.0.9",
     "graphql": "^17.1.0"
   },

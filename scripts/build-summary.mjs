@@ -17,6 +17,8 @@ const toTitle = (slug) =>
 const GROUPS = [
   { key: "operations", label: "Operations" },
   { key: "object", label: "Object Types" },
+  { key: "interface", label: "Interfaces" },
+  { key: "union", label: "Unions" },
   { key: "input", label: "Input Types" },
   { key: "enum", label: "Enums" },
   { key: "scalar", label: "Scalars" },
@@ -25,8 +27,7 @@ const GROUPS = [
 ];
 
 const SECTION_LABELS = {
-  local: "Local Schema",
-  remote: "Remote Schema",
+  api: "GraphQL API",
 };
 
 const ROOT_LABELS = {
@@ -34,13 +35,9 @@ const ROOT_LABELS = {
     label: "Home",
     icon: "_icons/home.svg",
   },
-  local: {
-    label: "Local Schema",
-    icon: "_icons/local.svg",
-  },
-  remote: {
-    label: "Remote Schema",
-    icon: "_icons/remote.svg",
+  api: {
+    label: "GraphQL API",
+    icon: "_icons/api.svg",
   },
 };
 
@@ -100,6 +97,12 @@ const getPageGroupKey = (content) => {
 
   if (firstLine.startsWith("type ")) {
     return "object";
+  }
+  if (firstLine.startsWith("interface ")) {
+    return "interface";
+  }
+  if (firstLine.startsWith("union ")) {
+    return "union";
   }
   if (firstLine.startsWith("input ")) {
     return "input";
@@ -205,13 +208,9 @@ const getMarkdownPages = async (folder) => {
     .sort((a, b) => a.title.localeCompare(b.title));
 };
 
-const localPages = await getMarkdownPages("graphql");
-const remotePages = await getMarkdownPages("graphql-remote");
+const apiPages = await getMarkdownPages("graphql");
 
-const sections = [
-  { key: "local", label: "Local Schema", pages: localPages },
-  { key: "remote", label: "Remote Schema", pages: remotePages },
-];
+const sections = [{ key: "api", label: "GraphQL API", pages: apiPages }];
 
 await writeNavPages(sections);
 
