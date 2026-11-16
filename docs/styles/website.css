@@ -116,3 +116,36 @@
   font-size: 0.9em;
   color: #858585;
 }
+
+/* Keep the footer at the bottom of the viewport on short pages. */
+.book-body .body-inner,
+.book-body .page-wrapper,
+.book-body .page-inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-body .page-wrapper,
+.book-body .page-inner,
+.book-body .page-inner > #book-search-results {
+  flex: 1 0 auto;
+}
+
+.book-body .page-inner {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* The footer now sits outside .markdown-section: keep its link colours. */
+.gqlmd-footer a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+.book.color-theme-1 .gqlmd-footer a {
+  color: inherit;
+}
+
+.book.color-theme-2 .gqlmd-footer a {
+  color: #3eb1d0;
+}
