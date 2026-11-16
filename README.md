@@ -11,14 +11,11 @@ Inside your GraphQL-Markdown + [HonKit](https://honkit.netlify.app/) project, yo
 ```text
 .
 ├── docs/                        # Generated output (git-ignored)
-│   ├── graphql/                 # Docs from the local schema
-│   ├── graphql-remote/          # Docs from the remote schema
+│   ├── graphql/                 # Generated GraphQL docs
 │   ├── _nav/                    # Auto-generated sidebar nav pages
 │   ├── _icons/                  # SVG icons used in the sidebar
 │   ├── README.md                # GitBook homepage
 │   └── SUMMARY.md               # GitBook/HonKit table of contents
-├── schema/
-│   └── local.graphql            # Sample local GraphQL schema
 ├── scripts/
 │   └── build-summary.mjs        # Generates docs/SUMMARY.md
 ├── honkit-mdx.cjs               # Custom MDX formatter for HonKit output
@@ -33,9 +30,7 @@ All commands are run from the root of the project, from a terminal:
 | Command | Action |
 | --- | --- |
 | `npm install` | Install dependencies |
-| `npm run generate:local` | Generate docs from the local GraphQL schema |
-| `npm run generate:remote` | Generate docs from the remote GraphQL schema |
-| `npm run generate` | Generate docs from both schemas |
+| `npm run generate` | Generate docs from the GraphQL schema |
 | `npm run summary` | Build `docs/SUMMARY.md` (table of contents) |
 | `npm run dev` | Generate docs + serve a local HonKit preview |
 | `npm run build` | Generate docs + build a static site to `docs/_book` |
@@ -52,26 +47,17 @@ Open `http://localhost:4000`.
 
 > 🧑‍🚀 Edit `graphql.config.mjs` to try with your own GraphQL schema.
 
-### Override the remote schema endpoint
+### Schema
 
-By default the remote project points to `https://countries.trevorblades.com/graphql`.
-Copy the example env file, then edit the values:
-
-```bash
-cp .env.example .env
-```
-
-```bash
-GRAPHQL_ENDPOINT="https://your-api/graphql" npm run generate:remote
-```
+The demo documents the [shared GraphQL-Markdown demo schema](https://github.com/graphql-markdown/graphql-markdown/blob/main/tests/e2e/__data__/demo_schema.graphql), the same schema used by every GraphQL-Markdown demo. It is loaded from its raw URL by `graphql.config.mjs`.
 
 ## 🗂️ GitBook.com import workflow
 
-1. Run `npm run generate` (or one of the per-schema commands).
+1. Run `npm run generate`.
 2. In GitBook.com, create or open a space.
 3. Import files from the `docs/` folder:
    - include `docs/README.md`
-   - include `docs/graphql/` and/or `docs/graphql-remote/`
+   - include `docs/graphql/`
 4. Publish or preview the imported pages.
 
 > The formatter in `honkit-mdx.cjs` keeps output Markdown-compatible for HonKit and GitBook.com imports.

@@ -2,39 +2,26 @@
 
 This folder receives generated markdown files from GraphQL-Markdown.
 
-- Local schema output: `docs/graphql`
-- Remote schema output: `docs/graphql-remote`
+The documented schema is the [shared GraphQL-Markdown demo schema](https://github.com/graphql-markdown/graphql-markdown/blob/main/tests/e2e/__data__/demo_schema.graphql), loaded from its URL at generation time. Generated pages are written to `docs/graphql`.
 
-Import this `docs` directory into GitBook.com after running one of the generate scripts.
+Import this `docs` directory into GitBook.com after running `npm run generate`.
 
-## Local Schema
+## GraphQL API
 
-### Local Operations
+### Operations
 
-### Local Object
+### Object Types
 
-### Local Input
+### Interfaces
 
-### Local Enum
+### Unions
 
-### Local Scalar
+### Input Types
 
-### Local Directive
+### Enums
 
-### Local Other
+### Scalars
 
-## Remote Schema
+### Directives
 
-### Remote Operations
-
-### Remote Object
-
-### Remote Input
-
-### Remote Enum
-
-### Remote Scalar
-
-### Remote Directive
-
-### Remote Other
+### Other
