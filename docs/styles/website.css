@@ -115,6 +115,7 @@
   border-top: 1px solid #e8e8e8;
   font-size: 0.9em;
   color: #858585;
+  text-align: center;
 }
 
 /* Keep the footer at the bottom of the viewport on short pages. */
