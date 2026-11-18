@@ -6,4 +6,10 @@
   Generated with <a href="https://graphql-markdown.dev">GraphQL-Markdown</a>
   · <a href="https://github.com/graphql-markdown/graphql-markdown">⭐ Star on GitHub</a>
 </footer>
+<script>
+  // Tag the formatter's inline-styled "deprecated" badge so the stylesheet can tint it.
+  document.querySelectorAll('.markdown-section span[style*="border-radius:999px"]').forEach(function (el) {
+    if (el.textContent.trim() === "deprecated") el.classList.add("gqlmd-deprecated");
+  });
+</script>
 {% endblock %}
