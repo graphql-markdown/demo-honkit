@@ -4,3 +4,7 @@ docs/SUMMARY.md
 docs/_nav/
 _book/
 docs/_book/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/

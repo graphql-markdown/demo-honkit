@@ -13,8 +13,9 @@
     "summary": "node ./scripts/build-summary.mjs",
     "prepare": "npm run generate && npm run summary",
     "dev": "npm run prepare && honkit serve docs",
-    "build": "npm run prepare && honkit build docs docs/_book",
-    "clean": "rm -rf docs/graphql docs/SUMMARY.md docs/_nav _book docs/_book"
+    "build": "npm run prepare && honkit build docs _book",
+    "clean": "rm -rf docs/graphql docs/SUMMARY.md docs/_nav _book docs/_book",
+    "test:visual": "playwright test"
   },
   "dependencies": {
     "@graphql-markdown/cli": "^1.2.3",
@@ -24,7 +25,10 @@
     "graphql": "^17.1.0"
   },
   "devDependencies": {
+    "@argos-ci/playwright": "^7.8.0",
+    "@playwright/test": "^1.65.0",
     "honkit": "^6.2.5",
-    "honkit-plugin-toggle-chapters": "^0.0.1"
+    "honkit-plugin-toggle-chapters": "^0.0.1",
+    "serve": "^14.2.7"
   }
 }
