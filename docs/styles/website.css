@@ -118,7 +118,7 @@
 
 /* The footer now sits outside .markdown-section: keep its link colours. */
 .gqlmd-footer a {
-  color: #6d28d9;
+  color: #3a73ad;
   text-decoration: none;
 }
 
@@ -127,17 +127,17 @@
 }
 
 .book.color-theme-2 .gqlmd-footer a {
-  color: #b9a4ff;
+  color: #6fa8dc;
 }
 
 /* ════════════════════════════════════════════════════════════════════════
  * Polish for generated GraphQL reference pages.
- * Violet accent + zinc neutrals; the HonKit night theme (`.color-theme-2`)
+ * HonKit blue accent + zinc neutrals; the HonKit night theme (`.color-theme-2`)
  * is the dark variant.
  * ════════════════════════════════════════════════════════════════════════ */
 
 .book {
-  --g-primary: #6d28d9;
+  --g-primary: #3a73ad;
   --g-fg: #27272a;
   --g-muted: #71717a;
   --g-border: #e4e4e7;
@@ -150,7 +150,7 @@
 }
 
 .book.color-theme-2 {
-  --g-primary: #b9a4ff;
+  --g-primary: #6fa8dc;
   --g-fg: #e4e4e7;
   --g-muted: #a1a1aa;
   --g-border: #3f3f46;
@@ -617,7 +617,7 @@
   border-color: var(--g-border);
 }
 
-/* Active sidebar chapter + footer links: violet instead of HonKit blue */
+/* Active sidebar chapter + footer links: brand blue accent */
 .book .book-summary ul.summary li.active > a {
   color: var(--g-primary);
 }
