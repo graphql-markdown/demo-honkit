@@ -125,9 +125,11 @@ export const beforeComposePageTypeHook = async (event) => {
   if (!kind) return;
 
   const badge = makeKindBadge(kind);
-  const header = sections?.header;
-  if (header && typeof header.content === "string") {
-    header.content = header.content.replace(/^(#\s+.+)$/m, (_, h1) => `${h1} ${badge}`);
+  // The visible `# Title` heading is printed by the preset's `formatMDXTitle`
+  // into the reserved `title` page section.
+  const title = sections?.title;
+  if (title && typeof title.content === "string") {
+    title.content = title.content.replace(/^(#\s+.+)$/m, (_, h1) => `${h1} ${badge}`);
   }
 
   const toc = buildPageToc(sections, event.output);
