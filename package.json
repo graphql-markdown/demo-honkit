@@ -12,8 +12,8 @@
     "generate": "gqlmd graphql-to-doc",
     "summary": "node ./scripts/build-summary.mjs",
     "prepare": "npm run generate && npm run summary",
-    "dev": "npm run prepare && honkit serve docs",
-    "build": "npm run prepare && honkit build docs _book",
+    "dev": "npm run prepare && npx honkit serve docs",
+    "build": "npm run prepare && npx honkit build docs _book",
     "clean": "rm -rf docs/graphql docs/SUMMARY.md docs/_nav _book docs/_book",
     "test:visual": "playwright test"
   },
