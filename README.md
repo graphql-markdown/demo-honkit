@@ -14,11 +14,16 @@ Inside your GraphQL-Markdown + [HonKit](https://honkit.netlify.app/) project, yo
 │   ├── graphql/                 # Generated GraphQL docs
 │   ├── _nav/                    # Auto-generated sidebar nav pages
 │   ├── _icons/                  # SVG icons used in the sidebar
-│   ├── README.md                # GitBook homepage
+│   ├── _layouts/website/        # Custom page layout (footer, badge tagging)
+│   ├── styles/website.css       # Reference polish (light + night theme) and landing page styles
+│   ├── README.md                # Landing page (HTML hero, schema preview, highlights)
+│   ├── about.md                 # Intro text about the demo
 │   └── SUMMARY.md               # GitBook/HonKit table of contents
 ├── scripts/
-│   └── build-summary.mjs        # Generates docs/SUMMARY.md
-├── honkit-mdx.cjs               # Custom MDX formatter for HonKit output
+│   ├── build-summary.mjs        # Generates docs/SUMMARY.md
+│   └── honkit-mdx.mjs           # Custom formatter for HonKit output
+├── tests/visual/site.spec.ts    # Playwright + Argos visual tests
+├── playwright.config.ts         # Playwright config (serves docs/_book on :4173)
 ├── graphql.config.mjs           # GraphQL-Markdown configuration
 └── package.json
 ```
@@ -34,6 +39,7 @@ All commands are run from the root of the project, from a terminal:
 | `npm run summary` | Build `docs/SUMMARY.md` (table of contents) |
 | `npm run dev` | Generate docs + serve a local HonKit preview |
 | `npm run build` | Generate docs + build a static site to `docs/_book` |
+| `npm run test:visual` | Run the Playwright + Argos visual tests (build first with `npx honkit build docs _book`) |
 | `npm run clean` | Remove all generated files |
 
 ## 🏎️ Quick start
@@ -46,6 +52,18 @@ npm run dev
 Open `http://localhost:4000`.
 
 > 🧑‍🚀 Edit `graphql.config.mjs` to try with your own GraphQL schema.
+
+### Visual tests
+
+Screenshots of the landing page and one page per GraphQL type kind (plus the night theme) are captured with [Playwright](https://playwright.dev/) and uploaded to [Argos](https://argos-ci.com/) by `.github/workflows/visual.yml` when `ARGOS_TOKEN` is set.
+
+```bash
+npx playwright install chromium
+npm run prepare && npx honkit build docs _book
+npm run test:visual
+```
+
+The night theme is HonKit's font-settings theme: the tests seed `localStorage[":fontState"]` with `{ theme: 2 }`.
 
 ### Schema
 
