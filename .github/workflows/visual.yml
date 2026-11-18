@@ -34,8 +34,7 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Build site
-        run: npm run prepare
-          npx honkit build docs _book
+        run: npm run build
         env:
           GRAPHQL_MARKDOWN_TELEMETRY_DISABLED: "1"
 
