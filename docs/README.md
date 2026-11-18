@@ -1,27 +1,36 @@
-# GraphQL API Reference
+---
+description: A generated GraphQL API reference for the workspace demo schema.
+---
 
-This folder receives generated markdown files from GraphQL-Markdown.
+<div class="gqlmd-home">
+<section class="gqlmd-hero">
+<div class="gqlmd-hero-text">
+<p class="gqlmd-headline">GRAPHQL SCHEMA REFERENCE</p>
+<h1 class="gqlmd-title">Your API, mapped with intent.</h1>
+<p class="gqlmd-description">Explore a generated workspace schema with operations, input types, relationships, and ready-to-run examples in one focused reference.</p>
+<div class="gqlmd-links">
+<a class="gqlmd-btn gqlmd-btn-primary" href="_nav/api-schema.html">Explore the API</a>
+<a class="gqlmd-btn gqlmd-btn-outline" href="graphql/queries-projects.html">View an example</a>
+</div>
+</div>
+<div class="gqlmd-preview">
+<div class="gqlmd-preview-bar"><span>workspace.graphql</span><span class="gqlmd-chip">SCHEMA</span></div>
+<div class="gqlmd-code" role="img" aria-label="workspace.graphql schema preview"><span class="tk-keyword">type</span> <span class="tk-type">Project</span> <span class="tk-keyword">implements</span> <span class="tk-type">Node</span> {
+  <span class="tk-field">id</span>: <span class="tk-type">ID!</span>
+  <span class="tk-field">name</span>: <span class="tk-type">String!</span>
+  <span class="tk-field">status</span>: <span class="tk-type">ProjectStatus!</span>
+  <span class="tk-field">owner</span>: <span class="tk-type">User!</span>
+}
 
-The documented schema is the [shared GraphQL-Markdown demo schema](https://github.com/graphql-markdown/graphql-markdown/blob/main/tests/e2e/__data__/demo_schema.graphql), loaded from its URL at generation time. Generated pages are written to `docs/graphql`.
-
-Import this `docs` directory into GitBook.com after running `npm run generate`.
-
-## GraphQL API
-
-### Operations
-
-### Object Types
-
-### Interfaces
-
-### Unions
-
-### Input Types
-
-### Enums
-
-### Scalars
-
-### Directives
-
-### Other
+<span class="tk-keyword">type</span> <span class="tk-type">Query</span> {
+  <span class="tk-field">projects</span>(status: <span class="tk-type">ProjectStatus</span>):
+    <span class="tk-type">ProjectConnection!</span>
+}</div>
+</div>
+</section>
+<section class="gqlmd-highlights">
+<div><p class="gqlmd-kicker">OPERATIONS</p><p class="gqlmd-highlight-title">Queries, mutations, subscriptions</p></div>
+<div><p class="gqlmd-kicker">MODELS</p><p class="gqlmd-highlight-title">Objects, inputs, unions, enums</p></div>
+<div><p class="gqlmd-kicker">EXAMPLES</p><p class="gqlmd-highlight-title">Schema-defined GraphQL samples</p></div>
+</section>
+</div>
