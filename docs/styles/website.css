@@ -626,7 +626,4 @@
   color: var(--g-primary);
 }
 
-/* The landing page has no prev/next: hide the arrows so they don't hit the card shadow */
-.book-body:has(.gqlmd-home) .navigation {
-  display: none;
-}
+

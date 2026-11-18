@@ -1,5 +1,8 @@
 {% extends template.self %}
 
+{# No prev/next page navigation arrows. #}
+{% block book_navigation %}{% endblock %}
+
 {% block search_results %}
 {{ super() }}
 <footer class="gqlmd-footer">
