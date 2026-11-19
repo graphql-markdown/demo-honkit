@@ -37,6 +37,11 @@
   padding: 0;
 }
 
+/* Code blocks start below the outline instead of being squeezed beside it. */
+.markdown-section pre {
+  clear: right;
+}
+
 .markdown-section .on-this-page__title {
   margin: 0 0 0.5rem;
   font-size: 0.72rem;
