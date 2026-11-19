@@ -26,6 +26,12 @@ const GROUPS = [
   { key: "other", label: "Other" },
 ];
 
+const OPERATION_SUBGROUPS = [
+  { key: "queries", label: "Queries", prefix: "queries-" },
+  { key: "mutations", label: "Mutations", prefix: "mutations-" },
+  { key: "subscriptions", label: "Subscriptions", prefix: "subscriptions-" },
+];
+
 const SECTION_LABELS = {
   api: "GraphQL API",
 };
@@ -166,6 +172,32 @@ const writeNavPages = async (sections) => {
         writeFile(path.join(docsDir, navFileFor(section.key, group.key)), body, "utf8"),
       );
     }
+
+    for (const subGroup of OPERATION_SUBGROUPS) {
+      const subPages = section.pages.filter(
+        (page) => page.groupKey === "operations" && page.name.startsWith(subGroup.prefix),
+      );
+      if (subPages.length === 0) {
+        continue;
+      }
+
+      const body = [
+        `# ${SECTION_LABELS[section.key]} - Operations - ${subGroup.label}`,
+        "",
+        "This page is auto-generated for sidebar grouping.",
+        "",
+        "Use the sidebar to navigate to the detailed type pages.",
+        "",
+      ].join("\n");
+
+      writes.push(
+        writeFile(
+          path.join(docsDir, navFileFor(section.key, `operations-${subGroup.key}`)),
+          body,
+          "utf8",
+        ),
+      );
+    }
   }
 
   await Promise.all(writes);
@@ -230,6 +262,26 @@ const renderSchemaSection = (lines, section) => {
     }
 
     lines.push(`  * [${group.label}](${navFileFor(section.key, group.key)})`);
+
+    if (group.key === "operations") {
+      const grouped = new Set();
+      for (const subGroup of OPERATION_SUBGROUPS) {
+        const subPages = pages.filter((page) => page.name.startsWith(subGroup.prefix));
+        if (subPages.length === 0) {
+          continue;
+        }
+        lines.push(`    * [${subGroup.label}](${navFileFor(section.key, `operations-${subGroup.key}`)})`);
+        for (const page of subPages) {
+          grouped.add(page);
+          lines.push(`      * [${page.title}](${page.href})`);
+        }
+      }
+      for (const page of pages.filter((item) => !grouped.has(item))) {
+        lines.push(`    * [${page.title}](${page.href})`);
+      }
+      continue;
+    }
+
     for (const page of pages) {
       lines.push(`    * [${page.title}](${page.href})`);
     }
