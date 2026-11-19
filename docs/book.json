@@ -1,4 +1,6 @@
 {
+  "title": "GraphQL-Markdown HonKit Demo",
+  "description": "A generated GraphQL API reference for the workspace demo schema.",
   "plugins": [
     "toggle-chapters"
   ],

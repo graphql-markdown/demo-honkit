@@ -246,6 +246,7 @@ for (const section of sections) {
   renderSchemaSection(lines, section);
 }
 
+lines.push("* [About](about.md)");
 lines.push("");
 
 await writeFile(path.join(docsDir, "SUMMARY.md"), lines.join("\n"), "utf8");
