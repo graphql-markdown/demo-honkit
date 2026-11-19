@@ -483,8 +483,9 @@
 .gqlmd-home .gqlmd-chip {
   padding: 0.2em 0.5em;
   border-radius: 0.25em;
-  background: rgba(216, 180, 254, 0.1);
-  color: #d8b4fe;
+  /* The preview card is dark in every theme: use the light accent shade. */
+  background: color-mix(in oklch, #6fa8dc 10%, transparent);
+  color: #6fa8dc;
   font-size: 0.85em;
 }
 
