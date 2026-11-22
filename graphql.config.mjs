@@ -13,7 +13,7 @@ const config = {
     "graphql-markdown": {
       rootPath: "./docs",
       baseURL: "graphql",
-      linkRoot: "/demo-honkit",
+      linkRoot: "/",
       homepage: false,
       telemetry: false,
       formatter,
