@@ -27,7 +27,7 @@
   "devDependencies": {
     "@argos-ci/playwright": "^7.10.0",
     "@playwright/test": "^1.65.0",
-    "honkit": "^6.2.5",
+    "honkit": "^7.0.0",
     "serve": "^14.2.7"
   }
 }
