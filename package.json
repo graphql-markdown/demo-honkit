@@ -25,7 +25,7 @@
     "graphql": "^17.1.0"
   },
   "devDependencies": {
-    "@argos-ci/playwright": "^7.8.0",
+    "@argos-ci/playwright": "^7.10.0",
     "@playwright/test": "^1.65.0",
     "honkit": "^6.2.5",
     "serve": "^14.2.7"
