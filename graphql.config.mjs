@@ -1,6 +1,8 @@
 import { dirname, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
+import { decorators } from "./lib/decorators.mjs";
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const formatter = pathToFileURL(resolve(__dirname, "scripts/honkit-mdx.mjs")).href;
 
@@ -29,6 +31,7 @@ const config = {
         typeBadges: true,
         deprecated: "default",
       },
+      decorators,
     },
   },
 };

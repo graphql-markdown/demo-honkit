@@ -56,6 +56,34 @@ for (const [kind, slug, name] of pages) {
   });
 }
 
+test("markdown copy", async ({ request }) => {
+  const response = await request.get("/graphql/objects-project.md");
+  expect(response.status()).toBe(200);
+  const body = await response.text();
+  expect(body.startsWith("# ")).toBe(true);
+  expect(body).not.toContain("<span");
+});
+
+test("deprecation reason links to a type page", async ({ page }) => {
+  await page.goto("/graphql/objects-project.html");
+  const link = page
+    .locator(".markdown-section")
+    .locator("a", { hasText: "ProjectStatus" })
+    .first();
+  await expect(link).toHaveAttribute("href", /enums-project-status\.html$/);
+});
+
+// The type-level `@deprecatedType` notice renders with a link to `Project`.
+test("deprecated type shows a notice with a link", async ({ page }) => {
+  await page.goto("/graphql/objects-legacy-project.html");
+  const notice = page.locator(".markdown-section p", { hasText: "Replaced by" }).first();
+  await expect(notice).toBeVisible();
+  await expect(notice.locator("a", { hasText: /^Project$/ })).toHaveAttribute(
+    "href",
+    /objects-project\.html$/,
+  );
+});
+
 test.describe("dark mode", () => {
   test.beforeEach(async ({ page }) => {
     await useNightTheme(page);
