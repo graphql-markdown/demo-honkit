@@ -35,6 +35,7 @@ jobs:
         run: |
           npm run prepare
           npx honkit build docs _book
+          node -e "require('node:fs').cpSync('.markdown-copies','docs/_book',{recursive:true})"
         env:
           GRAPHQL_MARKDOWN_TELEMETRY_DEBUG: "1"
 

@@ -1,4 +1,8 @@
-import HonKitFormatter from "@graphql-markdown/formatters/honkit";
+import { readFile, writeFile } from "node:fs/promises";
+import { relative, sep } from "node:path";
+
+import HonKitFormatter, * as preset from "@graphql-markdown/formatters/honkit";
+import { toLink } from "@graphql-markdown/printer-legacy";
 
 export const mdxExtension = HonKitFormatter.mdxExtension;
 
@@ -140,6 +144,69 @@ export const beforeComposePageTypeHook = async (event) => {
 };
 
 // ---------------------------------------------------------------------------
+// Deprecation links + "View as Markdown" link
+// ---------------------------------------------------------------------------
+// Pages render concurrently, so this may hold another page's options: only read
+// settings shared by every page (schema, basePath, hierarchy, groups, deprecated, formatMDXLink).
+let printOptions;
+
+const beforePrintTypeHook = (event) => {
+  printOptions = event.data.options;
+};
+
+// Replaces inline code names matching a schema type with a link to its page.
+const linkEntities = (text) => {
+  const schema = printOptions?.schema;
+  const rootTypes = [
+    schema?.getQueryType(),
+    schema?.getMutationType(),
+    schema?.getSubscriptionType(),
+  ];
+
+  return text.replaceAll(/`([_A-Za-z][_0-9A-Za-z]*)`/g, (match, name) => {
+    const type = schema?.getType(name);
+    if (!type || name.startsWith("__") || rootTypes.includes(type)) {
+      return match;
+    }
+    const { url } = toLink(type, name, undefined, printOptions);
+    return url === "#" ? match : `[\`${name}\`](${url})`;
+  });
+};
+
+const formatMDXAdmonition = (admonition, meta) => {
+  const text =
+    admonition.title?.toLowerCase() === "deprecated" && admonition.text
+      ? linkEntities(admonition.text)
+      : admonition.text;
+  // The preset quotes only the first line: trim the leading blank lines and
+  // quote every line, so the whole reason stays inside the callout.
+  const quoted = text?.trim().replaceAll("\n", "\n> ");
+  return preset.formatMDXAdmonition({ ...admonition, text: quoted }, meta);
+};
+
+// Public URL of the generated pages' folder (site URL + base path + baseURL)
+const COPIES_URL = "https://graphql-markdown.dev/demo-honkit/graphql";
+
+const afterRenderTypeEntitiesHook = async (event) => {
+  await preset.afterRenderTypeEntitiesHook?.(event);
+
+  const { filePath, outputDir, outputAdapter } = event.data;
+  const path = relative(outputDir, filePath)
+    .split(sep)
+    .join("/")
+    .replace(/\.mdx?$/, "");
+  const link = `\n\n[View as Markdown](${COPIES_URL}/${path}.md)\n`;
+
+  const page = outputAdapter?.readFile
+    ? await outputAdapter.readFile(filePath)
+    : await readFile(filePath, "utf8");
+  const content = `${page.trimEnd()}${link}`;
+  await (outputAdapter?.writeFile
+    ? outputAdapter.writeFile(filePath, content)
+    : writeFile(filePath, content));
+};
+
+// ---------------------------------------------------------------------------
 // Default export — formatter preset + custom hook
 // ---------------------------------------------------------------------------
 const { createMDXFormatter } = HonKitFormatter;
@@ -148,4 +215,7 @@ export default {
   ...(typeof createMDXFormatter === "function" ? createMDXFormatter() : HonKitFormatter),
   mdxExtension,
   beforeComposePageTypeHook,
+  beforePrintTypeHook,
+  formatMDXAdmonition,
+  afterRenderTypeEntitiesHook,
 };
